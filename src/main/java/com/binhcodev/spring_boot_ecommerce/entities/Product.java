@@ -30,7 +30,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @Column(nullable = false)
@@ -41,7 +41,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @Column(nullable = false)
     private User user;
 
     @CreationTimestamp

@@ -1,11 +1,12 @@
 package com.binhcodev.spring_boot_ecommerce.services;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.binhcodev.spring_boot_ecommerce.dtos.requests.UserRequestDto;
 import com.binhcodev.spring_boot_ecommerce.entities.User;
 import com.binhcodev.spring_boot_ecommerce.repositories.UserRepository;
 
@@ -15,22 +16,19 @@ import lombok.AllArgsConstructor;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow();
     }
 
-    public User save(UserRequestDto user) {
-        Optional<User> existUser = userRepository.findByEmail(user.getEmail());
-        if (existUser.isPresent()) {
-            throw new IllegalArgumentException("Email already exists");
-        }
-        User newUser = User.builder()
-            .email(user.getEmail())
-            .password(passwordEncoder.encode(user.getPassword()))
-            .fullName(user.getFullName())
-            .build();
-        return userRepository.save(newUser);
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (User) authentication.getPrincipal();
+    }
+
+    public List<User> allUsers() {
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add);
+        return users;
     }
 }
