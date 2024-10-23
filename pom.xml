@@ -85,6 +85,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Stripe Payment -->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>21.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
