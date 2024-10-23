@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -34,7 +35,7 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private String price;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private String imageUrl;
