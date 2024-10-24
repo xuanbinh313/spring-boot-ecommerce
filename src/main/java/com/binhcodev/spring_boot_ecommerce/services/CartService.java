@@ -9,7 +9,7 @@ import com.binhcodev.spring_boot_ecommerce.entities.Cart;
 import com.binhcodev.spring_boot_ecommerce.entities.Product;
 import com.binhcodev.spring_boot_ecommerce.entities.User;
 import com.binhcodev.spring_boot_ecommerce.repositories.CartRepository;
-
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -29,7 +29,7 @@ public class CartService {
     public Cart saveCart(CartDto cartDto) {
         User user = userService.getCurrentUser();
         List<Product> products = productService.getProductsByIds(cartDto.getItems());
-        Double total = products.stream().map(product -> product.getPrice().doubleValue()).mapToDouble(Double::doubleValue).sum();
+        BigDecimal total = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
         Cart cart = Cart.builder()
                 .items(products)
                 .total(total)

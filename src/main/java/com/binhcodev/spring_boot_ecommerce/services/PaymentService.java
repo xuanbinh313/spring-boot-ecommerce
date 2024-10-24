@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +17,12 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import java.math.BigDecimal;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class PaymentService {
     private PaymentRepository paymentRepository;
     private UserService userService;
@@ -48,7 +50,7 @@ public class PaymentService {
         if (payment == null) {
             throw new Exception("Payment information is missing");
         }
-        payment.setAmount(00.00);
+        payment.setAmount(new BigDecimal("0.00"));
         paymentRepository.save(payment);
     }
 }

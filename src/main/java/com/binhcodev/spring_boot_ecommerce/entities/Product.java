@@ -12,12 +12,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
+@Table(name = "products")
 @Data
 @Entity
 @NoArgsConstructor
@@ -25,7 +28,8 @@ import java.math.BigDecimal;
 @Builder
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "SERIAL")
     private Long id;
 
     @Column(nullable = false)
@@ -34,7 +38,7 @@ public class Product {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(nullable = false)
@@ -45,9 +49,11 @@ public class Product {
     private User user;
 
     @CreationTimestamp
-    private LocalTime createdDate;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime createdAt;
 
     @UpdateTimestamp
-    private LocalTime updatedDate;
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime updatedAt;
 
 }

@@ -19,7 +19,8 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/payment")
 @AllArgsConstructor
 public class PaymentController {
-    private final PaymentService paymentService;
+    public PaymentController() {} // Default constructor
+    private PaymentService paymentService;
 
     @PostMapping("/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentRequest paymentRequest)

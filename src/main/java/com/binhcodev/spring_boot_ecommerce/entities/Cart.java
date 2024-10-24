@@ -19,23 +19,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
-
+import java.time.OffsetDateTime;
+import java.math.BigDecimal;
 @Entity
-@Table(name = "cart")
+@Table(name = "carts")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "SERIAL")
     private Long id;
 
     @ManyToMany
     @JoinTable(
-        name = "cart_items",
+        name = "cart_products",
         joinColumns = @JoinColumn(name = "cart_id"),
         inverseJoinColumns = @JoinColumn(name = "product_id")
     )
@@ -44,11 +44,14 @@ public class Cart {
     @ManyToOne
     private User user;
 
-    private Double total;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal total;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime createdAt;
 
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime updatedAt;
 }

@@ -3,6 +3,8 @@ package com.binhcodev.spring_boot_ecommerce.entities;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,7 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.time.OffsetDateTime;
 @Table(name = "users")
 @Entity
 @Data
@@ -26,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "serial")
+    @Column(columnDefinition = "SERIAL")
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -70,5 +72,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    
+    @CreationTimestamp
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime updatedAt;
 
 }

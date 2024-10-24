@@ -7,19 +7,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
-@Table(name = "payment")
+@Table(name = "payments")
 @Data
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "SERIAL")
     private Long id;
 
     @Column(name="user_email")
     private String userEmail;
 
-    @Column(name = "amount")
-    private double amount;
+    @Column(name = "amount",precision = 10, scale = 2)
+    private BigDecimal amount;
+    
+    @CreationTimestamp
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime updatedAt;
 }
