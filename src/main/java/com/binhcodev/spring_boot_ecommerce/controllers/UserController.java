@@ -1,5 +1,7 @@
 package com.binhcodev.spring_boot_ecommerce.controllers;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.binhcodev.spring_boot_ecommerce.dtos.responses.UserResponse;
 import com.binhcodev.spring_boot_ecommerce.entities.User;
 import com.binhcodev.spring_boot_ecommerce.services.UserService;
-import java.util.List;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package com.binhcodev.spring_boot_ecommerce.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,6 @@ import com.stripe.model.PaymentIntent;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
 
 @Service
 @AllArgsConstructor

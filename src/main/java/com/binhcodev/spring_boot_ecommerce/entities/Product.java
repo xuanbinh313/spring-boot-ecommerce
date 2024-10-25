@@ -1,6 +1,7 @@
 package com.binhcodev.spring_boot_ecommerce.entities;
 
-import java.time.LocalTime;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,8 +18,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
 @Table(name = "products")
 @Data

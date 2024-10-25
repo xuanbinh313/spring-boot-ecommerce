@@ -1,6 +1,7 @@
 package com.binhcodev.spring_boot_ecommerce.configs;
 
 import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
