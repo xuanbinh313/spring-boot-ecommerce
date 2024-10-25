@@ -28,7 +28,7 @@ import java.time.OffsetDateTime;
 @Builder
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "SERIAL")
     private Long id;
 

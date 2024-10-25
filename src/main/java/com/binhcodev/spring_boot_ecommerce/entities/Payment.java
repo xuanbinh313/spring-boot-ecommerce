@@ -17,7 +17,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Data
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "SERIAL")
     private Long id;
 

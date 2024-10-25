@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 @Builder
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "SERIAL")
     private Long id;
 
@@ -42,6 +42,7 @@ public class Cart {
     private List<Product> items;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(precision = 10, scale = 2)
